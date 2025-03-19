@@ -36,17 +36,18 @@ class InterestCalculator:
 
 @app.route('/data', methods=["GET", "POST"])
 def get_data():
-    plazo = request.form.get("plazo")
-    plazo = int(plazo)
-    monto = request.form.get("monto")
-    monto = monto.replace(",", "")
-    monto = float(monto)
-    interes = request.form.get("interes")
-    interes = interes.replace(",", ".")
-    interes = float(interes)
-    calculator = InterestCalculator(monto, interes, plazo)
-    result, gainer_per_year, final_amount = calculator.calculate()
-    result = f"{round(result,2):,}" 
-    return render_template('index.html', result=result, gainer_per_year=[f"{gain:,}" for gain in gainer_per_year], final_amount=[f"{final:,}" for final in final_amount])
+    if method == "POST":
+        plazo = request.form.get("plazo")
+        plazo = int(plazo)
+        monto = request.form.get("monto")
+        monto = monto.replace(",", "")
+        monto = float(monto)
+        interes = request.form.get("interes")
+        interes = interes.replace(",", ".")
+        interes = float(interes)
+        calculator = InterestCalculator(monto, interes, plazo)
+        result, gainer_per_year, final_amount = calculator.calculate()
+        result = f"{round(result,2):,}" 
+        return render_template('index.html', result=result, gainer_per_year=[f"{gain:,}" for gain in gainer_per_year], final_amount=[f"{final:,}" for final in final_amount])
     
 
