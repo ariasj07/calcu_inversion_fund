@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Flask</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> -->
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <h1>Fondos de inversión</h1>
+    <p class="description">Calculadora para interés de fondos de inversión</p>
+    <div class="grid1">
+        <div class="space1 space">
+            <p>Dinero acumulado previsto:</p>
+            {% if result %}
+            <h2>{{ result }}CRC</h2>
+            {% else %}
+            <h2>0,00CRC</h2>
+            {% endif %}
+        </div>
+        <form class="space2 space" action="/data" method="post" id="formdata">
+            <p>Calcular nuevo monto:</p>
+            <h3>Dinero a invertir:</h3>
+            <div class="input_container">
+                <input type="text" name="monto" id="" placeholder="10,000">
+                <h4>CRC</h4>
+            </div>
+            <h3>Porcentaje de interés:</h3>
+            <div class="input_container">
+                <input type="text" name="interes" id="" placeholder="2,5">
+                <h4>%</h4>
+            </div>
+            <h3>Plazo de inversión:</h3>
+            <div class="input_container">
+                <input type="text" name="plazo" id="" placeholder="5">
+                <h4>Años</h4>
+            </div>
+        </form>
+        <div class="space3 space" id="submitbtn" onclick="document.getElementById('formdata').submit()">
+            Calcular +
+        </div>
+    </div>
+    <!--     <div class="resultado">
+        <ul>
+            {% for gain_year in gainer_per_year %}
+            <li>{{ gain_year }}</li>
+            {% endfor %}
+        </ul>
+    </div> -->
+    <ul class="result_table">
+        <h2>Monto acumulado</h2>
+        <h2>Interés generado</h2>
+        <ul>
+            {%for final_amount_year in final_amount %}
+            <li>{{ final_amount_year }}</li>
+            {% endfor %}
+        </ul>
+        <ul>
+            {%for gain_year in gainer_per_year %}
+            <li>{{ gain_year }}</li>
+            {% endfor %}
+        </ul>
+    </ul>
+
+    <footer>
+        <h3>Website desarrollada por Josué Arias, proyecto en desarrollo open source</h3>
+        <div>
+            <a href="">Github</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
