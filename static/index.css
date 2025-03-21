@@ -125,7 +125,7 @@ h1 {
     width: 90%;
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 0.5fr 1fr 1fr;
     text-align: center;
     padding: 4px;
     margin-block: 12px;
@@ -135,6 +135,9 @@ h1 {
         font-size: 14px;
         border: solid 1px #ffffff27;
         padding: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
     }
 

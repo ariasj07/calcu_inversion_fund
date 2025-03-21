@@ -51,8 +51,14 @@
         </ul>
     </div> -->
     <ul class="result_table">
+        <h2>Años</h2>
         <h2>Monto acumulado</h2>
         <h2>Interés generado</h2>
+        <ul>
+            {%for year in years_amount %}
+            <li>{{ year }}</li>
+            {% endfor %}
+        </ul>
         <ul>
             {%for final_amount_year in final_amount %}
             <li>{{ final_amount_year }}</li>
