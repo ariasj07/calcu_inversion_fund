@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario con Flask</title>
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}"> -->
-    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="../static/index.css">
 </head>
 
 <body>
@@ -25,17 +25,17 @@
             <p>Calcular nuevo monto:</p>
             <h3>Dinero a invertir:</h3>
             <div class="input_container">
-                <input type="text" name="monto" id="" placeholder="10,000">
+                <input type="text" name="monto" id="" placeholder="Ejemplo: 10,000">
                 <h4>CRC</h4>
             </div>
             <h3>Porcentaje de interés:</h3>
             <div class="input_container">
-                <input type="text" name="interes" id="" placeholder="2,5">
+                <input type="text" name="interes" id="" placeholder="Ejemplo: 2,5">
                 <h4>%</h4>
             </div>
             <h3>Plazo de inversión:</h3>
             <div class="input_container">
-                <input type="text" name="plazo" id="" placeholder="5">
+                <input type="text" name="plazo" id="" placeholder="Ejemplo: 5">
                 <h4>Años</h4>
             </div>
         </form>
@@ -51,25 +51,44 @@
         </ul>
     </div> -->
     <ul class="result_table">
-        <h2>Años</h2>
+        <h2>Año</h2>
         <h2>Monto acumulado</h2>
         <h2>Interés generado</h2>
         <ul>
+            {%if years_amount%}
             {%for year in years_amount %}
             <li>{{ year }}</li>
             {% endfor %}
+            {% else %}
+            <li>0</li>
+            {% endif %}
         </ul>
         <ul>
+            {%if final_amount %}
             {%for final_amount_year in final_amount %}
             <li>{{ final_amount_year }}</li>
             {% endfor %}
+            {% else %}
+            <li>0,00</li>
+            {% endif %}
         </ul>
         <ul>
+            {% if gainer_per_year %}
             {%for gain_year in gainer_per_year %}
             <li>{{ gain_year }}</li>
             {% endfor %}
+            {% else %}
+            <li>0,00</li>
+            {% endif %}
         </ul>
     </ul>
+
+    {% if gainer_per_year %}
+    <div class="download_container">
+        <h2>Descarga el desglose en Excel:</h2>
+        <a href="/download_file">Descargar Excel</a>
+    </div>
+    {% endif %}
 
     <footer>
         <h3>Website desarrollada por Josué Arias, proyecto en desarrollo open source</h3>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 
 app = Flask(__name__)
 
@@ -34,6 +34,7 @@ class InterestCalculator:
             initial += gained
         
         data = pd.DataFrame({"Años": years_list, "Monto ganado": gained_list, "Monto año a año": final_list})
+        data.to_excel("data.xlsx")
         return initial, gained_list, final_list, years_total
 
 
@@ -51,5 +52,8 @@ def get_data():
     result, gainer_per_year, final_amount, years_amount = calculator.calculate()
     result = f"{round(result,2):,}" 
     return render_template('index.html', result=result, gainer_per_year=[f"{gain:,}" for gain in gainer_per_year], final_amount=[f"{final:,}" for final in final_amount], years_amount=years_amount)
-    
 
+
+@app.route("/download_file", methods=["GET"])
+def download_file():
+    return send_file("./data.xlsx", as_attachment=True)

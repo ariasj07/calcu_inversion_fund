@@ -168,3 +168,17 @@ footer{
         padding-block: 4px;
     }
 }
+
+.download_container{
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding-block: 12px;
+    & h2 {
+        font-size: 14px;
+
+    }
+    & a{
+        font-size: 12px;
+    }
+}
